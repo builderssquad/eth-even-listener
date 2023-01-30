@@ -1,10 +1,19 @@
 # Eth Event Listener 
 
-# by Builderssquad Bloackchain Developers
+### by Builderssquad Bloackchain Developers
 
 ## Motivation
 
 Make a simple smart contract event listener to get events from the smart contract in NodeJS app and be configure the finality
+
+## Implementation 
+
+NodeJS module
+
+## Dependencies
+
+* levelup db - to keep processing index
+* configuration file - to provide info about rpc, confirmation config, contract address, abi and startBlock
 
 ## Install 
 
