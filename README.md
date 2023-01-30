@@ -38,20 +38,21 @@ const { startSyncService } = require('eth-event-listener');
 // here is in example the data is stored in memory, but you can chose different storage
 const db = levelup(memdown(), { keyEncoding: 'json' });
 
-
-const config = {
-    // list of all supported chains and chain specifics
+const options = {
+    // @required: list of all supported chains and chain specifics
     chains: require("./chains.json"),
-    // chosen chain 
+    // @required: chosen chain from chains list
     chain: 1,
-    // the block where smart contract was deployed
-    startBlock: 4634748,
-    // contract information of USDT: https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7
+    // @required: contract information of USDT: https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7
     contract: { abi: require('./erc20.abi.json'),
                 address : "0xdAC17F958D2ee523a2206206994597C13D831ec7",
                 event: "Transfer"
+    },// @optional: this callback is triggered between event processing circles, processing starts right after this script is finished
+    trialCallback : (cb)=> {
+        console.log("start of procssing")
+        cb()
     },
-    // required: init an event's handler. 
+    // @required: init an event's handler. 
     // if you callback error, it will try to send it again till success - this is mostly all what you need for your app :)
     // this method will never send duplicated transactions, 
     // possibly it can send the outdated transaction after newer transaction. it depends on blockchain node congested state. please follow the event sourcing pattern to replay such transactions
@@ -59,15 +60,13 @@ const config = {
         console.log('incoming unique events', events)
         cb()
     },
-    // optional: this callback is triggered between event processing circles, processing starts right after this script is finished
-    trialCallback : (cb)=> {
-        console.log("start of procssing")
-        cb()
-    },
+    // @optional: the block where smart contract was deployed
+    startBlock: 4634748
+    
 }
 
 
-startSyncService(db, config, (err)=> {  
+startSyncService(db, options, (err)=> {  
     console.log("process is terminated, err: " + err ); 
 });
 
