@@ -8,7 +8,8 @@ Make a simple smart contract event listener to get events from the smart contrac
 
 ## Implementation 
 
-NodeJS module
+* NodeJS module
+* build on top of getPastEvents
 
 ## Dependencies
 
@@ -68,3 +69,22 @@ startSyncService(db, config, (err)=> {
 });
 
 ```
+
+### Event fields
+
+You can find the information here https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#contract-events-return
+
+The structure of the returned event Object looks as follows:
+
+* event - String: The event name.
+* signature - String|Null: The event signature, null if it’s an anonymous event.
+* address - String: Address this event originated from.
+* returnValues - Object: The return values coming from the event, e.g. {myVar: 1, myVar2: '0x234...'}.
+* logIndex - Number: Integer of the event index position in the block.
+* transactionIndex - Number: Integer of the transaction’s index position the event was created in.
+* transactionHash 32 Bytes - String: Hash of the transaction this event was created in.
+* blockHash 32 Bytes - String: Hash of the block this event was created in. null when it’s still pending.
+* blockNumber - Number: The block number this log was created in. null when still pending.
+* raw.data - String: The data containing non-indexed log parameter.
+* raw.topics - Array: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the event.
+
