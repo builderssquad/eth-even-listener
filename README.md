@@ -51,7 +51,10 @@ const config = {
                 address : "0xdAC17F958D2ee523a2206206994597C13D831ec7",
                 event: "Transfer"
     },
-    // required: init an event's handler. if you callback error, it will try to send it again till success - this is mostly all what you need for your app :)
+    // required: init an event's handler. 
+    // if you callback error, it will try to send it again till success - this is mostly all what you need for your app :)
+    // this method will never send duplicated transactions, 
+    // possibly it can send the outdated transaction after newer transaction. it depends on blockchain node congested state. please follow the event sourcing pattern to replay such transactions
     eventsCallback : (events, cb)=> {
         console.log('incoming unique events', events)
         cb()
