@@ -64,6 +64,7 @@ const options = {
     // possibly it can send the outdated transaction after newer transaction. it depends on blockchain node congested state. please follow the event sourcing pattern to replay such transactions
     eventsCallback : (events, cb)=> {
         console.log('incoming unique events', events)
+        // recommendation to use cross-process communication to notify your node app (rebbitMQ, ...)
         cb()
     },
     // @optional: the block where smart contract was deployed
@@ -71,7 +72,8 @@ const options = {
     
 }
 
-
+// start it and let it go.
+// recommendation to use pm2 and use it as microservice
 startSyncService(db, options, (err)=> {  
     console.log("process is terminated, err: " + err ); 
 });
