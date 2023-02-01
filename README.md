@@ -101,7 +101,7 @@ The structure of the returned event Object looks as follows:
 Example 
 
 
-```JSON
+```Javascript
 [
   {
     event: "Transfer",
