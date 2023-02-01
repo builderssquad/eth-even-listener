@@ -98,3 +98,30 @@ The structure of the returned event Object looks as follows:
 * raw.data - String: The data containing non-indexed log parameter.
 * raw.topics - Array: An array with max 4 32 Byte topics, topic 1-3 contains indexed parameters of the event.
 
+Example 
+
+
+```JSON
+[
+  {
+    event: "Transfer",
+    address: "0x8f0483125fcb9aaaefa9209bd576e3cc72697c13",
+    returnValues: {
+      0: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      1: "0xD37f430A68dD39C16f0aEf07708a7C1f0dBc6433",
+      2: "1000000000000000000",
+      from: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+      to: "0xD37f430A68dD39C16f0aEf07708a7C1f0dBc6433",
+      value: "1000000000000000000"
+    },
+    blockNumber: 48,
+    transactionHash: "0xc6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b",
+    transactionIndex: 0,
+    blockHash: "0x6ef2fc5426d6ad6fd9e2a26abeab0aa2411b7ab17f30a99d3cb96aed1d1055b",
+    logIndex: 0,
+    removed: false,
+    id: "log_1"
+  }
+]
+
+```
