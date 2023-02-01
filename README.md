@@ -12,7 +12,9 @@ Do not care about internal integrity and be notified about new finalized event i
 
 * NodeJS module
 * build on top of getPastEvents (https://web3js.readthedocs.io/en/v1.2.11/web3-eth-contract.html#getpastevents)
-* Used key-value storage DB to cash the data. if you delete the storage it will replay all transactions
+* Used key-value storage DB to cache the data. if you delete the storage it will replay all transactions. 
+
+Notice! Please use drive storage instead of memory in production
 
 
 ## Dependencies
